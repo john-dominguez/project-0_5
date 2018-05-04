@@ -1,0 +1,37 @@
+﻿@using Project0.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center mt-2">
+    <h3 class="">Restaurants</h3>
+    <h5>The best of the worst</h5>
+</div>
+
+<div class="text-center mt-2">
+    <h2 class="display-3 mt-5"><strong>@Model.name</strong></h2>
+    @Html.ActionLink("Remove Restaurant", "Delete", new { id = Model.id }, null)
+</div>
+
+<h3 class="mt-5">Reviews</h3>
+@Html.ActionLink("Add Review", "Create", "Review", new { @class = "text-right" })
+    
+<div class="row my-3">
+        @foreach (var review in @Model.Reviews)
+        {
+            <div class="col-md-4 col-lg-3 mb-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">@review.username</h4>
+                        <p class="card-text"><strong>@review.rating Stars</strong></p>
+                        <p class="card-text">@review.body</p>
+                        <div class="mt-4">
+                            @Html.ActionLink("Edit", "Edit", "Review", new { id = review.id }, htmlAttributes: new { @class = "btn btn-primary float-left"})
+                            @Html.ActionLink("Remove", "Delete", "Review", new { id = review.id }, htmlAttributes: new { @class = "btn btn-danger float-right" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>

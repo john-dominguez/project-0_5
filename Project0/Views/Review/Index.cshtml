@@ -1,0 +1,27 @@
+﻿@using Project0.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center mt-3">
+    <h1 class="display-4">Restaurants</h1>
+    <h4>The best of the worst</h4>
+</div>
+
+<h1>TEST</h1>
+
+<div class="row my-5">
+    @foreach (var r in Model)
+    {
+        <div class="col-md-4 col-lg-3 mb-2">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@r.name</h5>
+                    <p class="card-text">Rating: @r.AverageRating().ToString("#.##")</p>
+                    @Html.ActionLink("More Info", "Show", "Restaurant", new { id = r.id }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+    }
+    </div>
