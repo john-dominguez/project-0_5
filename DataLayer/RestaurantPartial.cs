@@ -12,5 +12,7 @@ namespace DataLayer
         {
             return Reviews.ToList().Sum(x => x.rating) / ((double)Reviews.Count);
         }
+
+
     }
 }

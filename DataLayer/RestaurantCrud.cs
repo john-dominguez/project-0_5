@@ -13,7 +13,7 @@ namespace DataLayer
 
         public IEnumerable<Restaurant> GetRestaurants()
         {
-            return _db.Restaurants;
+            return _db.Restaurants.ToList();
         }
 
         public Restaurant GetRestaurant(int id)
@@ -21,7 +21,7 @@ namespace DataLayer
             return _db.Restaurants.Find(id);
         }
 
-        public bool CreatetRestaurant(Restaurant restaurant)
+        public bool CreateRestaurant(Restaurant restaurant)
         {
             _db.Restaurants.Add(restaurant);
             _db.SaveChanges();

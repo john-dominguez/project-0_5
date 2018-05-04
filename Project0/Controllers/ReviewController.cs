@@ -8,7 +8,30 @@ namespace Project0.Controllers
     {
         RestaurantCrud crud = new RestaurantCrud();
 
+        // GET: Review/Create
+        public ActionResult Create(int id)
+        {
+            ViewBag.restaurant_id = id;
+            return View();
+        }
 
+        // POST: Review/Create
+        [HttpPost]
+        public ActionResult Create(Review review)
+        {
+            try
+            {
+              //   review.restaurant_id = ViewBag.restaurant_id;
+                crud.CreatetReview(review);
+                // log that it worked
+                return RedirectToAction("Show", "Restaurant", review.restaurant_id);
+            }
+            catch
+            {
+                // log some problem
+                return RedirectToAction("Show", "Restaurant", review.restaurant_id);
+            }
+        }
 
         // GET: Review/Edit
         public ActionResult Edit(int id)

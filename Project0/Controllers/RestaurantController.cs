@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using DataLayer;
 
@@ -20,9 +21,9 @@ namespace Project0.Controllers
         {
             try
             {
-                crud.CreatetRestaurant(restaurant);
+                crud.CreateRestaurant(restaurant);
                 // log that it worked
-                return RedirectToAction("Show", restaurant.id);
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -63,9 +64,15 @@ namespace Project0.Controllers
 
 
         // GET: Restaurant/Show/id
-        public ActionResult Show(int id)
+        public ActionResult Show(int? id)
         {
-            return View(crud.GetRestaurant(id));
+            if (id==0||id==null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+
+            return View(crud.GetRestaurant(Convert.ToInt32(id)));
         }
 
         // GET: Restaurant/Delete/id
